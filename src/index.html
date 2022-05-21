@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <title></title>
-  </head>
-  <body>
-    <div class="app-wrapper d-flex flex-column justify-content-between vh-100 p-5">
-      <div class="content h-75">
+</head>
+<body>
+<div class="app-wrapper d-flex flex-column justify-content-between vh-100 p-5">
+    <div class="content h-75">
         <div class="chart-wrapper position-relative h-100" id="chart-wrapper">
-          <canvas id="chart"></canvas>
+            <canvas id="chart"></canvas>
         </div>
-      </div>
-      <div class="h-25 d-flex flex-column justify-content-end">
+    </div>
+    <div class="h-25 d-flex flex-column justify-content-end">
         <div class="information mb-3">
-          <span class="text-danger" id="error-text" style="display: none">Неверный формат файла</span>
+            <span class="text-danger" id="error-text" style="display: none">Неверный формат файла</span>
         </div>
         <div class="control w-100 d-flex flex-column justify-content-between">
-          <div class="d-flex">
-            <div class="input-group">
-              <input type="file" accept=".txt" class="form-control" id="uploader"/>
+            <select id="scale-select" class="form-select w-25 mb-2" aria-label="Default select example">
+                <option selected value="linear">Линейный</option>
+                <option value="logarithmic">Логаримфический</option>
+            </select>
+            <div class="d-flex">
+                <div class="input-group">
+                    <input type="file" accept=".txt" class="form-control" id="uploader"/>
+                </div>
+                <div class="input-group" style="margin-left: 10px;">
+                    <span class="input-group-text">Шаг отображения</span>
+                    <input type="number" class="form-control" id="step-input"/>
+                </div>
             </div>
-            <div class="input-group" style="margin-left: 10px;">
-              <span class="input-group-text">Шаг</span>
-              <input type="number" class="form-control" id="step-input"/>
+            <div class="d-flex mt-2">
+                <button class="btn btn-primary w-50" style="margin-right: 10px" id="render-button" disabled>
+                    Построить график
+                </button>
+                <button class="btn btn-primary w-50" disabled id="download-button">Загрузить CSV</button>
             </div>
-          </div>
-          <button class="btn btn-primary my-2" id="render-button" disabled>Построить график</button>
         </div>
-      </div>
     </div>
-    <script type="module" src='./renderer.js'></script>
-  </body>
+</div>
+<script type="module" src='./renderer.js'></script>
+</body>
 </html>
